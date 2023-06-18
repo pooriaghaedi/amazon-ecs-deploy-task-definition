@@ -25,11 +25,14 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Update ECS Task definition
-      uses: pooriaghaedi/amazon-ecs-update-task-definition@master
+      id: task-def
+      uses: pooriaghaedi/amazon-ecs-deploy-task-definition@master
       env:
         ECS_TASK_DEFINITION: "YourTaskDefinitionName"
-        REGION: ${{ secrets.AWS_REGION }}
+         REGION: ${{ secrets.AWS_REGION }}
         IMAGE_URI: "nginx:latest"
+        ECS_CLUSTER: "YourECSClusterName"
+        ECS_SERVICE: "YourECSServiceName"        
 ```
 
 ### Inputs
@@ -39,3 +42,5 @@ jobs:
 | `ECS_TASK_DEFINITION`  | Your Task definition name    |
 | `REGION`  | Your ECS task Region    |
 | `IMAGE_URI`  | The Docker image URI that will be used to update your ECS task definition.   |
+| `ECS_CLUSTER`  | Name of ECS cluster    |
+| `ECS_SERVICE`  | AWS ECS service name   |
