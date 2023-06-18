@@ -29,7 +29,7 @@ jobs:
       uses: pooriaghaedi/amazon-ecs-deploy-task-definition@master
       env:
         ECS_TASK_DEFINITION: "YourTaskDefinitionName"
-         REGION: ${{ secrets.AWS_REGION }}
+        REGION: ${{ secrets.AWS_REGION }}
         IMAGE_URI: "nginx:latest"
         ECS_CLUSTER: "YourECSClusterName"
         ECS_SERVICE: "YourECSServiceName"        
