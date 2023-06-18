@@ -1,0 +1,28 @@
+name: "Amazon ECS Deploy Existing Task definition"
+description: "Registers an Amazon ECS task definition, and deploys it to an ECS service. It uses the latest task definition."
+branding:
+  icon: 'cloud'
+  color: 'orange'
+author: "Pooria Ghaedi"
+inputs:
+  ECS_TASK_DEFINITION:
+    description: "ECS Taskdefinitions name"
+    required: true
+  REGION:
+    description: "ECS region"
+    default: "us-east-1" 
+  IMAGE_URI:
+    description: "Image uri"
+    required: true
+  ECS_SERVICE:
+    description: "ECS Service name"
+    required: true
+  ECS_CLUSTER:
+    description: "ECS Cluster name"
+    required: true
+outputs:
+  taskARN:
+    description: "task definition arn"
+runs:
+  using: "docker"
+  image: "Dockerfile"
