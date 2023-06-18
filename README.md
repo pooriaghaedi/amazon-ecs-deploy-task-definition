@@ -44,3 +44,8 @@ jobs:
 | `IMAGE_URI`  | The Docker image URI that will be used to update your ECS task definition.   |
 | `ECS_CLUSTER`  | Name of ECS cluster    |
 | `ECS_SERVICE`  | AWS ECS service name   |
+
+
+### To Do
+- [ ] Wait until the deployment is successful.
+- [ ] Reduce the build time for the action.
