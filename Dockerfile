@@ -3,8 +3,8 @@ FROM golang:1.20.5 as builder
 WORKDIR /app
 COPY . /app
 
-RUN go get -d -v
-
+# RUN go get -d -v
+RUN go mod download
 # Statically compile our app for use in a distroless container
 RUN CGO_ENABLED=0 go build -ldflags="-w -s" -v -o app .
 
