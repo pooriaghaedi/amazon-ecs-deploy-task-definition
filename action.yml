@@ -20,6 +20,11 @@ inputs:
   ECS_CLUSTER:
     description: "ECS Cluster name"
     required: true
+  ENABLE_EXEC_CMD:
+    description: "Enable command execution"
+    default: "false"
+    required: false
+    
 outputs:
   taskARN:
     description: "task definition arn"

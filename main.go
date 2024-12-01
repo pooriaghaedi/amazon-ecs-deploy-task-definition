@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -19,11 +20,20 @@ func main() {
 	secretAccessKey := os.Getenv("AWS_SECRET_ACCESS_KEY")
 	ecsCluster := os.Getenv("ECS_CLUSTER")
 	ecsService := os.Getenv("ECS_SERVICE")
+	enableExecuteCommandStr := os.Getenv("EnableExecuteCommand")
+
+	enableExecuteCommand, _ := strconv.ParseBool(enableExecuteCommandStr)
+
 
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String(REGION),
 		Credentials: credentials.NewStaticCredentials(accessKeyID, secretAccessKey, ""),
 	})
+
+	if err != nil {
+		fmt.Println("Error", err)
+		os.Exit(1)
+	}
 
 	svc := ecs.New(sess)
 
@@ -72,6 +82,7 @@ func main() {
 		Cluster:        aws.String(ecsCluster),
 		Service:        aws.String(ecsService),
 		TaskDefinition: aws.String(*newTaskDefinition.TaskDefinition.TaskDefinitionArn),
+		EnableExecuteCommand: aws.Bool(enableExecuteCommand),	
 	}
 
 	// Call UpdateService
